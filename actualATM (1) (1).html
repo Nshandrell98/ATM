@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BANK OF SHANDRELL</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="top"></div>
+        <div class="main-screen">
+            <div id="output" class="bigScreen">
+                <p class="welcome">WELCOME TO BANK OF SHANDRELL!</p>
+                <button onClick="enterpin()">Click here to get started</button>
+            </div>
+            <div class="sign">
+                <h1>BANK OF SHANDRELL</h1>
+            </div>
+            
+            <div class="nav">
+                <button class="options b1 " > </button>
+                <button class="options b2 "> </button>
+                <button class="options b3"> </button>
+                <button class= "options b4"> </button>
+            </div>
+            <hr class="hr1" width="500px">
+            <hr class="hr2" width="500px">
+            <hr class="hr3" width="500px">
+        </div>
+       
+        <div id="circle"></div>
+        <div  class="keypad trapezoid">
+            <button class="k00 keys"value="00">00</button>
+            <button class="k1 keys" value="1">1</button>
+            <button class="k2 keys" value="2">2</button>
+            <button class="k3 keys" value="3">3</button>
+            <button class="k4 keys" value="4">4</button>
+            <button class="k5 keys" value="5">5</button>
+            <button class="k6 keys" value="6">6</button>
+            <button class="k7 keys" value="7">7</button>
+            <button class="k8 keys" value="8">8</button>
+            <button class="k9 keys" value="9">9</button>
+            <button class="kPeriod keys" value=".">.</button>
+            <button class="k0  keys" value="0">0</button>      
+            <button onClick="validPin()" class="enter">ENTER</button>
+            <button  onClick="clearPin()" class="clear" onClick>CLEAR</button>
+            <button class="delete">DELETE</button>
+        </div>
+        <div class="reciept"></div>
+    </div>
+    <script> 
+    var nonChar='';
+    var user1= {
+        firstName: 'Johnny',
+        lastName: 'Does',
+        pin: 4321,     
+        // card: {  
+        //     name: 'Johnny Does',
+        //     number: 5111111111111111,
+        //     exp: '10/19',
+        //     security: 123,
+        //     type: 'mastercard',
+        //     vendor: 'BankPlus'
+        // },
+        checking: 1200,
+        savings: 700
+    };
+    
+    var user2 = {
+        firstName: 'Jane',
+        lastName: 'Doe',
+        pin: 4321,
+        // card: {
+        //     name: 'Jane Doe',
+        //     number: 6111111111111111,
+        //     exp: '10/19',
+        //     security: 456,
+        //     type: 'mastercard',
+        //     vendor: 'BankPlus'
+        // },
+        Checking: 200,
+        Savings: 700
+    };
+    var change = document.getElementsByTagName("button");     
+    
+    function enterpin() {
+        var output = document.getElementById("output");
+        output.innerHTML = '<h4>Welcome Please Input your Pin</h4><input type="password" id="pin" placeholder="Enter Pin" class="enterpin">';       
+        change[4].setAttribute("onClick", "showpressedButton(this.value)");
+        change[5].setAttribute("onClick", "showpressedButton(this.value)");
+        change[6].setAttribute("onClick", "showpressedButton(this.value)");
+        change[7].setAttribute("onClick", "showpressedButton(this.value)");
+        change[8].setAttribute("onClick", "showpressedButton(this.value)");
+        change[9].setAttribute("onClick", "showpressedButton(this.value)");
+        change[10].setAttribute("onClick", "showpressedButton(this.value)");
+        change[11].setAttribute("onClick", "showpressedButton(this.value)");
+        change[12].setAttribute("onClick", "showpressedButton(this.value)");
+        change[13].setAttribute("onClick", "showpressedButton(this.value)");
+        change[14].setAttribute("onClick", "showpressedButton(this.value)");
+        change[15].setAttribute("onClick", "showpressedButton(this.value)");
+    }
+    
+    
+    function validPin(){
+        nonChar = '';
+        var pin = document.getElementById("pin");
+        if (Number(pin.value) === user1.pin){
+        output.innerHTML = "<button onClick='withdraw()' class='withdraw'>WITHDRAW</button>  <button onClick='deposit()' class='deposit'>DEPOSIT</button>  <button class='transfer'>TRANSFER</button>  <button class='checkBal'>CHECK BALANCE</button>"       
+        }
+
+        else {
+            enterpin();
+            alert("incorrect pin, try again")
+
+        }
+    }
+
+    //////////////////Buttons///////////////////
+    
+    function pressedButton(presskey){
+        var key = document.querySelector(".enterpin");
+        key.value = presskey;
+        console.log(presskey)
+    }
+
+    function showpressedButton(presskey){
+        pressedButton(nonChar+=presskey)
+        console.log(presskey)
+    }
+
+    //////////////////Buttons///////////////////
+
+    function clearPin(){
+        pin='';
+        pressedButton(nonChar='');
+    }
+
+    function withdraw(){
+        output.innerHTML = "<p> Would you like to deduct from your checking or savings account?</p> <button onClick='savings()'>SAVINGS</button> <button onClick='checking()'>CHECKING</button> "
+    }
+
+    function showSavings(amnt){
+        pressedButtonForSavings(nonChar+=amnt);
+        console.log('showSavings',nonChar);
+        
+    }
+
+    function pressedButtonForSavings(amnt){
+        var savingsAmnt = document.querySelector(".savingsAmount");
+        savingsAmnt.value = amnt;
+        console.log('pressedButtonForSavings',amnt);
+    }
+
+    function savings(){
+        output.innerHTML = "<p>How much would you like to deduct from savings?</p> <input id='savingAmnt' placeholder='enter amount' class='savingsAmount'> <button onClick='calcSavings()'>ENTER</button><button onClick='withdraw()'>GO BACK</button>";
+        var savingsAmount = document.getElementById("savingAmnt");
+        change[4].setAttribute("onClick", "showSavings(this.value)");
+        change[5].setAttribute("onClick", "showSavings(this.value)");
+        change[6].setAttribute("onClick", "showSavings(this.value)");
+        change[7].setAttribute("onClick", "showSavings(this.value)");
+        change[8].setAttribute("onClick", "showSavings(this.value)");
+        change[9].setAttribute("onClick", "showSavings(this.value)");
+        change[10].setAttribute("onClick", "showSavings(this.value)");
+        change[11].setAttribute("onClick", "showSavings(this.value)");
+        change[12].setAttribute("onClick", "showSavings(this.value)");
+        change[13].setAttribute("onClick", "showSavings(this.value)");
+        change[14].setAttribute("onClick", "showSavings(this.value)");
+        change[15].setAttribute("onClick", "showSavings(this.value)");
+        
+    }
+    
+    function calcSavings(){
+        var savingsAmnt = document.querySelector(".savingsAmount");
+        if (Number(savingsAmnt.value) < user1.savings){
+            var newSavings = user1.savings - Number(savingsAmnt.value);
+            output.innerHTML = "<p>Your new savings amount is </p>" + newSavings ;
+        }
+        else {
+            alert("insufficient funds, please try again");
+            savings();
+            Number(savingsAmnt.value) = "";
+        }
+    }
+    function checking(){
+        output.innerHTML = "<p>How much would you like to deduct from Checking?</p> <input id='checkingAmnt' placeholder='enter amount' class='checkingAmount'> <button onClick='calcChecking()'>ENTER</button> <button onClick='withdraw()'>GO BACK</button>.";
+
+        change[4].setAttribute("onClick", "showChecking(this.value)");
+        change[5].setAttribute("onClick", "showChecking(this.value)");
+        change[6].setAttribute("onClick", "showChecking(this.value)");
+        change[7].setAttribute("onClick", "showChecking(this.value)");
+        change[8].setAttribute("onClick", "showChecking(this.value)");
+        change[9].setAttribute("onClick", "showChecking(this.value)");
+        change[10].setAttribute("onClick", "showChecking(this.value)");
+        change[11].setAttribute("onClick", "showChecking(this.value)");
+        change[12].setAttribute("onClick", "showChecking(this.value)");
+        change[13].setAttribute("onClick", "showChecking(this.value)");
+        change[14].setAttribute("onClick", "showChecking(this.value)");
+        
+        change[15].setAttribute("onClick", "showChecking(this.value)");
+    }
+    function pressedButtonForChecking(ckamnt){
+        var  checkingAmnt  = document.getElementById("checkingAmnt");
+        checkingAmnt.value = ckamnt;
+        console.log("pressedButtonForChecking", ckamnt);
+        
+    }
+
+    function showChecking(ckamnt){
+        pressedButtonForChecking(nonChar += ckamnt);
+        console.log("showChecking", nonChar);
+    }
+    function calcChecking(){
+        var checkingAmount = document.querySelector(".checkingAmount");
+        if (Number(checkingAmnt.value) < user1.checking){
+            var newChecking = user1.checking - Number(checkingAmount.value);
+            output.innerHTML = "<p>Your new checking amount is </p>" + newChecking ;
+        }
+        else {
+            alert("insufficient funds, please try again");
+            checking();
+            Number(checkingAmount.value) = "";
+        }
+
+
+    }
+    function deposit(){
+        output.innerHTML = "<p> Would you like to adda deposit to your checking or savings account?</p> <button onClick='savingsDep()'>SAVINGS</button> <button onClick='checkingDep()'>CHECKING</button> "
+    }
+    function showSavingsDep(amntDep){
+        pressedButtonForSavingsDep(nonChar+=amntDep);
+        console.log('showSavingsDep',nonChar);
+        
+    }
+
+    function pressedButtonForSavingsDep(amntDep){
+        var savingsAmntDep = document.querySelector(".savingsAmountDep");
+        savingsAmntDep.value = amntDep;
+        console.log('pressedButtonForSavingsDep',amntDep);
+    }
+
+    function savingsDep(){
+        output.innerHTML = "<p>How much would you like to deduct from savings?</p> <input id='savingAmntDep' placeholder='enter amount' class='savingsAmountDep'> <button onClick='calcSavingsDep()'>ENTER</button><button onClick='withdraw()'>GO BACK</button>";
+        var savingsAmountDep = document.getElementById("savingAmntDep");
+        change[4].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[5].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[6].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[7].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[8].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[9].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[10].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[11].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[12].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[13].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[14].setAttribute("onClick", "showSavingsDep(this.value)");
+        change[15].setAttribute("onClick", "showSavingsDep(this.value)");
+        
+    }
+    
+    function calcSavingsDep(){
+        var savingsAmntDep = document.querySelector(".savingsAmountDep");
+        var savingsDeposit = user1.savings + Number(savingsAmntDep.value);
+        output.innerHTML = "<p> You deposited </p>"+ savingsAmntDep +"<p>to your savings account. Your new account balance is </p>" + savingsDeposit ;
+    }
+    function showCheckingDep(ckamntDep){
+        pressedButtonForCheckingDep(nonChar+=ckamntDep);
+        console.log('showCheckingDep',nonChar);
+        
+    }
+
+    function pressedButtonForCheckingDep(ckamntDep){
+        var savingsAmntDep = document.querySelector(".checkingAmountDep");
+        checkingAmntDep.value = ckamntDep;
+        console.log('pressedButtonForCheckingDep',ckamntDep);
+    }
+
+    function checkingDep(){
+        output.innerHTML = "<p>How much would you like to deposit to your checking account?</p> <input id='checkingAmntDep' placeholder='enter amount' class='checkingAmountDep'> <button onClick='calcCheckingDep()'>ENTER</button><button onClick='withdraw()'>GO BACK</button>";
+        var checkingAmountDep = document.getElementById("checkingAmntDep");
+        change[4].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[5].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[6].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[7].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[8].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[9].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[10].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[11].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[12].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[13].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[14].setAttribute("onClick", "showCheckingDep(this.value)");
+        change[15].setAttribute("onClick", "showCheckingDep(this.value)");
+        
+    }
+    
+    function calcCheckingDep(){
+        var checkingAmntDep = document.querySelector(".checkingAmountDep");
+        var checkingDeposit = user1.checking + Number(checkingAmntDep.value);
+        output.innerHTML = "<p> You deposited </p>"+ checkingAmntDep +"<p>to your checking account. Your new checking account balance is </p>" + checkingDeposit ;
+    }
+
+    </script>
+</body>
+</html>
