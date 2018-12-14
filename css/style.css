@@ -119,70 +119,70 @@ background: rgb(163, 163, 163);
 } */
 .k1{
     position: absolute;
-    margin-top:30px;
-    margin-left: 130px;
+    top:30px;
+    left: 130px;
 
 }
 .k4{
     position: absolute;
-    margin-top:100px;
-    margin-left: 130px;
+    top:100px;
+    left: 130px;
 }
 .k7{
     position: absolute;
-    margin-top:170px;
-    margin-left: 130px;
+    top:170px;
+    left: 130px;
 }
 
 .k2{
     position: absolute;
-    margin-top:30px;
-    margin-left: 210px;
+    top:30px;
+    left: 210px;
 }
 .k3{
     position: absolute;
-    margin-top:30px;
-    margin-left: 290px;
+    top:30px;
+    left: 290px;
 }
 .k5{
     position: absolute;
-    margin-top:100px;
-    margin-left: 210px;
+    top:100px;
+    left: 210px;
 }
 .k6{
     position: absolute;
-    margin-top:100px;
-    margin-left: 290px;
+    top:100px;
+    left: 290px;
 }
 .k8{
     position: absolute;
-    margin-top:170px;
-    margin-left: 210px;
+    top:170px;
+    left: 210px;
 }
 .k9{
     position: absolute;
-    margin-top:170px;
-    margin-left: 290px;
+    top:170px;
+    left: 290px;
 }
 .k0 {
     position: absolute;
-    margin-top:240px;
-    margin-left: 290px;
+    top:240px;
+    left: 290px;
 }
 .kPeriod {
     position: absolute;
-    margin-top:240px;
-    margin-left: 210px;
+    top:240px;
+    left: 210px;
 }
 .k00{
     position: absolute;
-    margin-top:240px;
-    margin-left: 130px;
+    top:240px;
+    left: 130px;
 }
 .enter{
     position: absolute;
-    margin-top: 240px;
-    margin-left: 370px;
+    top: 240px;
+    left: 370px;
     background-color: rgb(19, 128, 0);
     padding: 25px;
     color: #fff;
@@ -190,8 +190,8 @@ background: rgb(163, 163, 163);
 }
 .clear{
     position: absolute;
-    margin-top: 170px;
-    margin-left: 370px;
+    top: 170px;
+    left: 370px;
     background-color: rgb(206, 221, 0);
     padding: 25px;
     color: #fff;
@@ -199,8 +199,8 @@ background: rgb(163, 163, 163);
 }
 .delete{
     position: absolute;
-    margin-top: 100px;
-    margin-left: 370px;
+    top: 100px;
+    left: 370px;
     background-color: rgb(255, 24, 24);
     padding: 25px;
     color: #fff;
