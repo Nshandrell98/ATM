@@ -28,7 +28,7 @@
        
         <div id="circle"></div>
         <div  class="keypad trapezoid">
-            <button class="k00 keys"value="00">00</button>
+            <button class="k00 keys"value="0">0</button>
             <button class="k1 keys" value="1">1</button>
             <button class="k2 keys" value="2">2</button>
             <button class="k3 keys" value="3">3</button>
@@ -39,7 +39,7 @@
             <button class="k8 keys" value="8">8</button>
             <button class="k9 keys" value="9">9</button>
             <button class="kPeriod keys" value=".">.</button>
-            <button class="k0  keys" value="0">0</button>      
+            <button class="k0  keys" value="00">00</button>      
             <button onClick="validPin()" class="enter">ENTER</button>
             <button  onClick="clearPin()" class="clear" onClick>CLEAR</button>
             <button class="delete">DELETE</button>
@@ -51,15 +51,7 @@
     var user1= {
         firstName: 'Johnny',
         lastName: 'Does',
-        pin: 4321,     
-        // card: {  
-        //     name: 'Johnny Does',
-        //     number: 5111111111111111,
-        //     exp: '10/19',
-        //     security: 123,
-        //     type: 'mastercard',
-        //     vendor: 'BankPlus'
-        // },
+        pin: 4321,  
         checking: 1200,
         savings: 700
     };
@@ -67,15 +59,7 @@
     var user2 = {
         firstName: 'Jane',
         lastName: 'Doe',
-        pin: 4321,
-        // card: {
-        //     name: 'Jane Doe',
-        //     number: 6111111111111111,
-        //     exp: '10/19',
-        //     security: 456,
-        //     type: 'mastercard',
-        //     vendor: 'BankPlus'
-        // },
+        pin: 4321,       
         Checking: 200,
         Savings: 700
     };
@@ -103,7 +87,7 @@
         nonChar = '';
         var pin = document.getElementById("pin");
         if (Number(pin.value) === user1.pin){
-        output.innerHTML = "<button onClick='withdraw()' class='withdraw'>WITHDRAW</button>  <button onClick='deposit()' class='deposit'>DEPOSIT</button>  <button class='transfer'>TRANSFER</button>  <button class='checkBal'>CHECK BALANCE</button>"       
+        output.innerHTML = "<p> Would you like to withdraw or deposit to your account?</p><button onClick='withdraw()' class='withdraw'>WITHDRAW</button>  <button onClick='deposit()' class='deposit'>DEPOSIT</button> "       
         }
 
         else {
@@ -134,7 +118,7 @@
     }
 
     function withdraw(){
-        output.innerHTML = "<p> Would you like to deduct from your checking or savings account?</p> <button onClick='savings()'>SAVINGS</button> <button onClick='checking()'>CHECKING</button> <button onClick= 'enterpin'>GO BACK</button>"
+        output.innerHTML = "<p> Would you like to deduct from your checking or savings account?</p> <button onClick='savings()'>SAVINGS</button> <button onClick='checking()'>CHECKING</button> <button onClick= 'enterpin()'>START OVER</button>"
             }
 
     function showSavings(amnt){
@@ -150,7 +134,7 @@
     }
 
     function savings(){
-        output.innerHTML = "<p>How much would you like to deduct from savings?</p> <input id='savingAmnt' placeholder='enter amount' class='savingsAmount'> <button onClick='calcSavings()'>ENTER</button><button onClick='withdraw()'>GO BACK</button>";
+        output.innerHTML = "<p>How much would you like to deduct from savings?</p> <input id='savingAmnt' placeholder='enter amount' class='savingsAmount'> <button onClick='calcSavings()'>ENTER</button>";
         var savingsAmount = document.getElementById("savingAmnt");
         // change[0].setAttribute("onClick", "showSavings(this.value)");
         change[1].setAttribute("onClick", "showSavings(this.value)");
@@ -171,7 +155,8 @@
         var savingsAmnt = document.querySelector(".savingsAmount");
         if (Number(savingsAmnt.value) < user1.savings){
             var newSavings = user1.savings - Number(savingsAmnt.value);
-            output.innerHTML = "<p>Your new savings amount is </p>" + newSavings ;
+            output.innerHTML = "<p>Your new savings amount is </p>" + newSavings + "<p>Would you like to make another withdrawal or exit?</p><button onClick= 'withdraw()'>GO  BACK TO WITHDRAW</button> <button onClick = 'enterpin()'>EXIT</button>";
+            nonChar = " ";
         }
         else {
             alert("insufficient funds, please try again");
@@ -211,7 +196,8 @@
         var checkingAmount = document.querySelector(".checkingAmount");
         if (Number(checkingAmnt.value) < user1.checking){
             var newChecking = user1.checking - Number(checkingAmount.value);
-            output.innerHTML = "<p>Your new checking amount is </p>" + newChecking ;
+            output.innerHTML = "<p>Your new checking amount is </p>" + newChecking + "<p>Would you like to make another withdrawal or exit?</p><button onClick= 'withdraw()'>GO  BACK TO WITHDRAW</button> <button onClick = 'enterpin()'>EXIT</button>";
+            nonChar = " ";
         }
         else {
             alert("insufficient funds, please try again");
@@ -222,7 +208,7 @@
 
     }
     function deposit(){
-        output.innerHTML = "<p> Would you like to add a deposit to your checking or savings account?</p> <button onClick='savingsDep()'>SAVINGS</button> <button onClick='checkingDep()'>CHECKING</button> "
+        output.innerHTML = "<p> Would you like to add a deposit to your checking or savings account?</p> <button onClick='savingsDep()'>SAVINGS</button> <button onClick='checkingDep()'>CHECKING</button> <button onClick='enterpin()'> START OVER </button>"
     }
     function showSavingsDep(amntDep){
         pressedButtonForSavingsDep(nonChar+=amntDep);
@@ -257,7 +243,8 @@
     function calcSavingsDep(){
         var savingsAmntDep = document.querySelector(".savingsAmountDep");
         var savingsDeposit = user1.savings + Number(savingsAmntDep.value);
-        output.innerHTML = "<p> You deposited </p>"+ savingsAmntDep +"<p>to your savings account. Your new account balance is </p>" + savingsDeposit ;
+        output.innerHTML ="Your new account balance is </p>" + savingsDeposit +"<p>Would you like to make another deopsit or exit?</p><button onClick= 'deposit()'>GO  BACK TO DEPOSIT</button> <button onClick = 'enterpin()'>EXIT</button>";
+        nonChar = " ";
     }
     function showCheckingDep(ckamntDep){
         pressedButtonForCheckingDep(nonChar+=ckamntDep);
@@ -292,7 +279,8 @@
     function calcCheckingDep(){
         var checkingAmntDep = document.querySelector(".checkingAmountDep");
         var checkingDeposit = user1.checking + Number(checkingAmntDep.value);
-        output.innerHTML = "<p> You deposited </p>"+ checkingAmntDep +"<p>to your checking account. Your new checking account balance is </p>" + checkingDeposit ;
+        output.innerHTML = "<p> Your new checking account balance is </p>" + checkingDeposit + "<p>Would you like to make another deposit or exit?</p><button onClick= 'deposit()'>GO  BACK TO DEPOSIT</button> <button onClick = 'enterpin()'>EXIT</button>" ;
+        nonChar = " ";
     }
 
     </script>
