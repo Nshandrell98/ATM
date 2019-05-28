@@ -87,7 +87,7 @@
         nonChar = '';
         var pin = document.getElementById("pin");
         if (Number(pin.value) === user1.pin){
-        output.innerHTML = "<p> Would you like to withdraw or deposit to your account?</p><button onClick='withdraw()' class='withdraw'>WITHDRAW</button>  <button onClick='deposit()' class='deposit'>DEPOSIT</button> "       
+        output.innerHTML = "<p> Would you like to Withdraw, Deposit, or View Balance?</p><button onClick='withdraw()' class='withdraw'>WITHDRAW</button>  <button onClick='deposit()' class='deposit'>DEPOSIT</button> <button onClick='viewBal()' class='viewBal'>VIEW BALANCE</button> "       
         }
 
         else {
@@ -117,6 +117,15 @@
         pressedButton(nonChar='');
     }
 
+    function viewBal(){
+        output.innerHTML = "<p>Would you like to view your checking or savings account balance?</p> <button onClick='viewChecking()' class='balBtn'>Checking</button> <button onClick='viewSavings()' class='balBtn'>Savings</button>" 
+    }
+    function viewChecking(){
+        output.innerHTML = "<p>Your available checking account balance is  " + user1.checking + ".</p>"
+    }
+    function viewSavings(){
+        output.innerHTML = "<p>Your available savings account balance is  " + user1.savings + ".</p>"
+    }
     function withdraw(){
         output.innerHTML = "<p> Would you like to deduct from your checking or savings account?</p> <button onClick='savings()'>SAVINGS</button> <button onClick='checking()'>CHECKING</button> <button onClick= 'enterpin()'>START OVER</button>"
             }
